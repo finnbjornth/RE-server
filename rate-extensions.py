@@ -4,13 +4,8 @@ import json
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        #user = users.get_current_user()
-
-        #if user:
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.write('Not a site!')
-        #else:
-        #    self.redirect(users.create_login_url(self.request.uri))
 
 class REapi(webapp2.RequestHandler):
     """REapi takes JSON string from the Rate-Extension
