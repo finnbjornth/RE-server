@@ -10,11 +10,11 @@ class MainPage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.write('Not a site!')
 
-class GetApi(webapp2.RequestHandler):
+class PostApi(webapp2.RequestHandler):
     """REapi takes JSON string from the Rate-Extension
        Chrome extension, checks the permissions and
        returns the status as JSON."""
-    def get(self):
+    def post(self):
         response = {}
         # Only a stub at the moment.
         extensions = [
@@ -30,5 +30,5 @@ class GetApi(webapp2.RequestHandler):
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/api/v1/get', GetApi),
+    ('/api/v1/post', PostApi),
 ], debug=True)
