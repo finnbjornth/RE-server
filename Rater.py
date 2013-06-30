@@ -1,3 +1,5 @@
+import math
+
 class ExtensionInfo:
 	def __init__(self, init_name, init_permissions, init_enabled):
 		self.name = init_name
@@ -75,7 +77,7 @@ class ProcessedExtensionInfo:
 		weightedSum = 0
 		for p in permissions:
 			weightedSum += weights.get(p, 0.125)#0.125 is the default value
-		weightedSum = round(weightedSum)
+		weightedSum = math.floor(weightedSum)
 		if weightedSum > 4:
 			weightedSum = 4
 		self.rank = ranks[weightedSum]
