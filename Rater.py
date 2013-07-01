@@ -90,7 +90,7 @@ class ProcessedExtensionInfo:
 	def toString(self):
 		return "Name: " + self.name + \
 			", Category: " + self.category + \
-			", Rang: " + self.rank + \
+			", Rank: " + self.rank + \
 			", Enabled: " + str(self.enabled) + \
 			". [Class: ProcessedExtensionInfo]"
 
