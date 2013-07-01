@@ -34,7 +34,8 @@ class PostApi(webapp2.RequestHandler):
                 name = extension["name"]
                 permissions = extension["permissions"]
                 enabled = extension["enabled"]
-                parsed.append(ExtensionInfo(name, permissions, enabled))
+                extId = extension["id"]
+                parsed.append(ExtensionInfo(name, permissions, enabled, extId))
 
             # Next the list is sent to processing, where
             # the list of ExtensionInfo objects are turned
@@ -48,6 +49,7 @@ class PostApi(webapp2.RequestHandler):
                     , "category":e.category
                     , "rank":e.rank
                     , "enabled":e.enabled
+                    , "id":e.id
                 })
                 logging.debug('ProcessedExtensions: ' + e.toString())
             

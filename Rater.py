@@ -1,10 +1,11 @@
 import math
 
 class ExtensionInfo:
-	def __init__(self, init_name, init_permissions, init_enabled):
+	def __init__(self, init_name, init_permissions, init_enabled, init_id):
 		self.name = init_name
 		self.permissions = init_permissions
 		self.enabled = init_enabled
+		self.id = init_id
 	def toString(self):
 		return "Name: " + self.name + \
 			", Permissions: " + self.permissions + \
@@ -17,6 +18,7 @@ class ProcessedExtensionInfo:
 		self.enabled = extensionInfo.enabled
 		self.SetCategory( extensionInfo.permissions )
 		self.SetRank( extensionInfo.permissions )
+		self.id = extensionInfo.id
 
 	def SetCategory(self, permissions):
 		websiteAccess = 0
