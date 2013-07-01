@@ -23,33 +23,34 @@ class PostApi(webapp2.RequestHandler):
         # of  ExtensionInfo objects Python can work with.
         jsonString = self.request.body
         logging.debug('Raw JSON string: ' + str(jsonString))
-        
-        loadedString = json.loads(jsonString)
-        logging.debug('Loaded string: ' + str(loadedString))
-
-        parsed = []
-        for extension in loadedString:
-            name = extension["name"]
-            permissions = extension["permissions"]
-            enabled = extension["enabled"]
-            parsed.append(ExtensionInfo(name, permissions, enabled))
-
-        # Next the list is sent to processing, where
-        # the list of ExtensionInfo objects are turned
-        # into ProcessedExtensionInfo.
-        #processedExtensions = RateStub()
-        processedExtensions = Rate(parsed)
 
         extensions = []
-        for e in processedExtensions:
-            extensions.append({
-                "name":e.name
-                , "category":e.category
-                , "rank":e.rank
-                , "enabled":e.enabled
-            })
-            logging.debug('ProcessedExtensions: ' + e.toString())
-        
+        if jsonString is not "":
+            loadedString = json.loads(jsonString)
+            logging.debug('Loaded string: ' + str(loadedString))
+
+            parsed = []
+            for extension in loadedString:
+                name = extension["name"]
+                permissions = extension["permissions"]
+                enabled = extension["enabled"]
+                parsed.append(ExtensionInfo(name, permissions, enabled))
+
+            # Next the list is sent to processing, where
+            # the list of ExtensionInfo objects are turned
+            # into ProcessedExtensionInfo.
+            #processedExtensions = RateStub()
+            processedExtensions = Rate(parsed)
+            
+            for e in processedExtensions:
+                extensions.append({
+                    "name":e.name
+                    , "category":e.category
+                    , "rank":e.rank
+                    , "enabled":e.enabled
+                })
+                logging.debug('ProcessedExtensions: ' + e.toString())
+            
         # Then the list is converted to a JSON string
         response = {}
         response["extensions"] = extensions
