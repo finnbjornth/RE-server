@@ -5,6 +5,11 @@ class ExtensionInfo:
 		self.name = init_name
 		self.permissions = init_permissions
 		self.enabled = init_enabled
+	def toString(self):
+		return "Name: " + self.name + \
+			", Permissions: " + self.permissions + \
+			", Enabled: " + str(self.enabled) + \
+			". [Class: ExtensionInfo]"
 
 class ProcessedExtensionInfo:
 	def __init__(self, extensionInfo):
@@ -81,6 +86,13 @@ class ProcessedExtensionInfo:
 		if weightedSum > 4:
 			weightedSum = 4
 		self.rank = ranks[weightedSum]
+
+	def toString(self):
+		return "Name: " + self.name + \
+			", Category: " + self.category + \
+			", Rang: " + self.rank + \
+			", Enabled: " + str(self.enabled) + \
+			". [Class: ProcessedExtensionInfo]"
 
 def Rate(extensionList):#takes a list of ExtensionInfo instances
 	processedList = []
